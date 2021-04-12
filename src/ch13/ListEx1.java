@@ -14,6 +14,7 @@ public class ListEx1 {
 		list1.add(100);
 		list1.add(1000);
 		list1.add(10000);
+		list1.add(100000);
 		
 		
 		for(int i:list1) {
