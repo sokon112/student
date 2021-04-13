@@ -1,0 +1,14 @@
+package ch14;
+
+import java.util.ArrayList;
+
+public class BoundedTypeEx {
+
+	public static void main(String[] args) {
+		int result = BoundType.compare(3.14, 4.15);
+		System.out.println(result);
+		
+		
+	}
+
+}
