@@ -6,12 +6,17 @@ public class GradeVO {
 	private int hisal;
 	public GradeVO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	public GradeVO(int grade, int losal, int hisal) {
 		super();
 		this.grade = grade;
 		this.losal = losal;
 		this.hisal = hisal;
+	}
+	@Override
+	public String toString() {
+		return "GradeVO [grade=" + grade + ", losal=" + losal + ", hisal=" + hisal + "]";
 	}
 	public int getGrade() {
 		return grade;
@@ -31,10 +36,5 @@ public class GradeVO {
 	public void setHisal(int hisal) {
 		this.hisal = hisal;
 	}
-	@Override
-	public String toString() {
-		return "GradeVO [grade=" + grade + ", losal=" + losal + ", hisal=" + hisal + "]";
-	}
-	
 	
 }

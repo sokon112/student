@@ -32,36 +32,6 @@ public class GradeDAO {
 		return con;
 	}
 	
-	public GradeVO selectOne(int grade) {
-		String sql = "select * from salgrade where grade=?";
-		con = getConnection();
-		GradeVO vo = null;
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, grade);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				vo = new GradeVO();
-				vo.setGrade(rs.getInt("grade"));
-				vo.setHisal(rs.getInt("hisal"));
-				vo.setLosal(rs.getInt("losal"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-				con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}		
-	return vo;	
-	}
-	
 	public List<GradeVO> select() {
 		con = getConnection();
 		String sql = "select * from salgrade";

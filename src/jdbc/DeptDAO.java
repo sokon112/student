@@ -29,7 +29,7 @@ public class DeptDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+	
 		return con;
 	}
 	
@@ -93,15 +93,70 @@ public class DeptDAO {
 		}
 		return list;
 	}
-	public boolean insert(int deptno, String dname, String loc) {
-		String sql = "insert into dept_temp(deptno,dname,loc) values(?,?,?)";
-		boolean insertFlag = false;
+	
+//	public boolean insert(int deptno, String dname, String loc) {
+//		boolean insertFlag = false;
+//		try {
+//			String sql = "insert into dept_temp(deptno,dname,loc) values(?,?,?)";
+//			con = getConnection();
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, deptno);
+//			pstmt.setString(2, dname);
+//			pstmt.setString(3, loc);
+//			int result = pstmt.executeUpdate();
+//			if(result>0) {
+//				insertFlag = true;
+//			}
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				pstmt.close();
+//				con.close();
+//			} catch (Exception e2) {
+//				e2.printStackTrace();
+//			}
+//		}
+//		return insertFlag;
+//	}
+	
+	public boolean update(int deptno, String loc ) {
+		boolean updateFlag = false;
 		try {
+			String sql ="update dept_temp set loc=? where deptno=?";
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, deptno);
-			pstmt.setString(2, dname);
-			pstmt.setString(3, loc);
+			pstmt.setString(1, loc);
+			pstmt.setInt(2, deptno);
+			int result = pstmt.executeUpdate();
+			if(result>0) {
+				updateFlag=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return updateFlag;
+	}
+	
+	public boolean insert(DeptVO vo) {
+		boolean insertFlag = false;
+		try {
+			String sql = "insert into dept_temp(deptno,dname,loc) values(?,?,?)";
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, vo.getDeptno());
+			pstmt.setString(2, vo.getDname());
+			pstmt.setString(3, vo.getLoc());
 			int result = pstmt.executeUpdate();
 			if(result>0) {
 				insertFlag = true;
@@ -120,4 +175,56 @@ public class DeptDAO {
 		}
 		return insertFlag;
 	}
+	
+	public boolean delete(int deptno) {
+		boolean deleteFlag=false;
+		try {
+			String sql = "delete from dept_temp where deptno = ?";
+			con =getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+			int result = pstmt.executeUpdate();
+			if(result>0) {
+				deleteFlag=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				con.close();				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+					
+		}
+		return deleteFlag;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
